@@ -29,7 +29,7 @@ const logger = winston.createLogger({
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = parseInt(process.env.PORT || '3002', 10);
 
 // Middleware
 app.use(helmet());
@@ -486,7 +486,7 @@ app.use((req: Request, res: Response) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   logger.info(`Vercel MCP Server running on port ${PORT}`);
   logger.info('Endpoints: /health, /api/deploy/*, /api/projects, /api/env');
 });
